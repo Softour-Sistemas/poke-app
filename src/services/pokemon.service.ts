@@ -9,7 +9,9 @@ export const PokemonService = {
 
         const response = await fetch(`${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`);
 
-        if (!response.ok) throw new Error('Error fetching Pokemon list');
+        if (!response.ok) {
+            throw new Error('Error fetching Pokemon list');
+        }
 
         return response.json();
     },
@@ -18,7 +20,9 @@ export const PokemonService = {
 
         const response = await fetch(`${BASE_URL}/pokemon/${name}`);
 
-        if (!response.ok) throw new Error('Error fetching Pokemon details');
+        if (!response.ok) {
+            throw new Error('Error fetching Pokemon details');
+        }
 
         return response.json();
 
