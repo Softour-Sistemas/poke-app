@@ -1,7 +1,9 @@
 <template>
-    <div class="pokemon-grid">
-        <PokemonCard v-for="pokemon in pokemons" :key="pokemon.name" :pokemon="pokemon" />
-    </div>
+    <ul class="pokemon-list">
+        <li v-for="pokemon in pokemons" :key="pokemon.name">
+            <PokemonCard :pokemon="pokemon" />
+        </li>
+    </ul>
 </template>
 
 <script setup lang="ts">
@@ -13,9 +15,4 @@ defineProps<{
 }>();
 </script>
 
-<style lang="scss">
-@use "./PokemonGrid.scss" as *;
-</style>
-
-
-
+<style lang="scss" src='./PokemonGrid.scss'></style>

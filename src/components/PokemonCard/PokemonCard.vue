@@ -1,5 +1,5 @@
 <template>
-<div class="pokemon-card" data-testid="pokemon-card">
+    <div class="pokemon-card">
         <img :src="pokemon.url" :alt="pokemon.name" class="pokemon-card__image" />
         <span class="pokemon-card__name">
             {{ pokemon.name }}
@@ -15,6 +15,4 @@ defineProps<{
 }>();
 </script>
 
-<style scoped lang="scss">
-@use "./PokemonCard.scss" as *;
-</style>
+<style lang="scss" src="./PokemonCard.scss"></style>
