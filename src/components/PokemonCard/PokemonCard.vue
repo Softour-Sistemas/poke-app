@@ -1,5 +1,5 @@
 <template>
-    <div class="pokemon-card">
+<div class="pokemon-card" data-testid="pokemon-card">
         <img :src="pokemon.url" :alt="pokemon.name" class="pokemon-card__image" />
         <span class="pokemon-card__name">
             {{ pokemon.name }}
