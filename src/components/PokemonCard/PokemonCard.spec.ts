@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/vue';
 import '@testing-library/jest-dom';
-import Pokemon from '@/components/Pokemon.vue';
 import { describe, expect, it } from 'vitest';
+import PokemonCard from './PokemonCard.vue';
 
 describe('Pokemon.vue', () => {
     const pokemon = {
@@ -10,7 +10,7 @@ describe('Pokemon.vue', () => {
     };
 
     it('muestra la imagen correcta', () => {
-        render(Pokemon, { props: { pokemon } });
+        render(PokemonCard, { props: { pokemon } });
 
         const img = screen.getByRole('img', { name: "bulbasaur" });
 
@@ -20,13 +20,13 @@ describe('Pokemon.vue', () => {
     });
 
     it('muestra el nombre', () => {
-        render(Pokemon, { props: { pokemon } });
+        render(PokemonCard, { props: { pokemon } });
 
         expect(screen.getByText("bulbasaur")).toBeInTheDocument();
     });
 
     it('tiene las clases de estilo correctas', () => {
-        render(Pokemon, { props: { pokemon } });
+        render(PokemonCard, { props: { pokemon } });
 
         const name = screen.getByText("bulbasaur");
         const img = screen.getByRole('img', { name: "bulbasaur" });
