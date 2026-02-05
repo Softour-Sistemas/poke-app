@@ -7,27 +7,19 @@
   <nav>
     <RouterLink to="/pokemon">pokemon</RouterLink>
   </nav>
-
-  <RouterView />  
 </template>
 
 <script setup lang="ts">
-import { PokemonService } from '@/services/pokemon.service';
 import { usePokemonStore } from '@/store';
 import { onMounted } from 'vue';
 
 const store = usePokemonStore()
 
-const initPokemons = 0;
-const limitPokemons = 151;
+const init_pokemons = 0;
+const limit_pokemons = 151;
 
 onMounted(async () => {
-  try {
-    const pokemons = await PokemonService.getPokemonList(initPokemons, limitPokemons);
-    store.pokemons = pokemons.results;
-  } catch (e) {
-    console.error(e);
-  }
+  await store.loadPokemons(limit_pokemons, init_pokemons);
 });
 
 </script>
