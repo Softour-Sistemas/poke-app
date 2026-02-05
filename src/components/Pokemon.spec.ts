@@ -1,6 +1,7 @@
-import { mount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
+import { render, screen } from '@testing-library/vue';
+import '@testing-library/jest-dom';
 import Pokemon from '@/components/Pokemon.vue';
+import { describe, expect, it } from 'vitest';
 
 describe('Pokemon.vue', () => {
     const pokemon = {
@@ -8,43 +9,29 @@ describe('Pokemon.vue', () => {
         url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'
     };
 
-    it('renderiza el componente', () => {
-        const wrapper = mount(Pokemon, {
-            props: { pokemon }
-        });
-
-        expect(wrapper.exists()).toBe(true);
-    });
-
     it('muestra la imagen correcta', () => {
-        const wrapper = mount(Pokemon, {
-            props: { pokemon }
-        });
+        render(Pokemon, { props: { pokemon } });
 
-        const img = wrapper.find('img');
+        const img = screen.getByRole('img', { name: "bulbasaur" });
 
-        expect(img.exists()).toBe(true);
-        expect(img.attributes('src')).toBe(pokemon.url);
-        expect(img.attributes('alt')).toBe(pokemon.name);
+        expect(img).toBeInTheDocument();
+        expect(img).toHaveAttribute('src', pokemon.url);
+        expect(img).toHaveAttribute('alt', pokemon.name);
     });
 
     it('muestra el nombre', () => {
-        const wrapper = mount(Pokemon, {
-            props: { pokemon }
-        });
+        render(Pokemon, { props: { pokemon } });
 
-        const name = wrapper.find('.pokemon-name').text();
-
-        expect(name).toBe('bulbasaur');
+        expect(screen.getByText("bulbasaur")).toBeInTheDocument();
     });
 
     it('tiene las clases de estilo correctas', () => {
-        const wrapper = mount(Pokemon, {
-            props: { pokemon }
-        });
+        render(Pokemon, { props: { pokemon } });
 
-        expect(wrapper.classes()).toContain('pokemon-card');
-        expect(wrapper.find('.pokemon-name').exists()).toBe(true);
-        expect(wrapper.find('.pokemon-image').exists()).toBe(true);
+        const name = screen.getByText("bulbasaur");
+        const img = screen.getByRole('img', { name: "bulbasaur" });
+
+        expect(name).toHaveClass('pokemon-card__name');
+        expect(img).toHaveClass('pokemon-card__image');
     });
 });
