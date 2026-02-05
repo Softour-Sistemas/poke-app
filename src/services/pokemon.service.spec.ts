@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { PokemonService } from './pokemon.service';
 import type { PokemonList, PokemonDetails } from '@/models/pokemon';
+import { PokemonDetailsError, PokemonListError } from '@/domain/errors/pokemonError';
 
 describe('PokemonService', () => {
 
@@ -43,7 +44,7 @@ describe('PokemonService', () => {
 
         await expect(
             PokemonService.getPokemonList(20, 0)
-        ).rejects.toThrow('Error fetching Pokemon list');
+        ).rejects.toThrow(PokemonListError);
     });
 
     it('debe devolver los detalles de un Pokemon', async () => {
@@ -78,7 +79,7 @@ describe('PokemonService', () => {
 
         await expect(
             PokemonService.getPokemonDetails('bulbasaur')
-        ).rejects.toThrow('Error fetching Pokemon details');
+        ).rejects.toThrow(PokemonDetailsError);
     });
 
 });
