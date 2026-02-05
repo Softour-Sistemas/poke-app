@@ -16,5 +16,5 @@ defineProps<{
 </script>
 
 <style scoped lang="scss">
-@import "./Pokemon.scss";
+@use "./PokemonCard.scss" as *;
 </style>
