@@ -20,7 +20,7 @@ export default defineConfig({
     environment: 'jsdom',
 
     // ✔ Unit tests dentro de src
-    include: ['src/**/*.test.ts'],
+    include: ['src/**/*.spec.ts'],
 
     // ✔ NO ejecutar E2E
     exclude: ['tests/e2e/**']
