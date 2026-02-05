@@ -7,6 +7,19 @@
   <nav>
     <RouterLink to="/pokemon">pokemon</RouterLink>
   </nav>
-
-  <RouterView />  
 </template>
+
+<script setup lang="ts">
+import { usePokemonStore } from '@/store';
+import { onMounted } from 'vue';
+
+const store = usePokemonStore()
+
+const INIT_POKEMONS = 0;
+const LIMIT_POKEMONS = 151;
+
+onMounted(async () => {
+  await store.loadPokemons(LIMIT_POKEMONS, INIT_POKEMONS);
+});
+
+</script>
