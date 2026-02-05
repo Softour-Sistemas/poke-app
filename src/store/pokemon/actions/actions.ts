@@ -7,8 +7,8 @@ type StateType = ReturnType<typeof state>;
 export const actions = {
     async loadPokemons(this: StateType & any, init: number, limit: number) {
         try {
-            const data: PokemonList = await PokemonService.getPokemonList(init, limit);
-            this.setPokemons(data.results);
+            const {results} = await PokemonService.getPokemonList(init, limit);
+            this.setPokemons(results);
         } catch (error) {
         console.error("Error loading pokemons:", error);
         return [];}

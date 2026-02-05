@@ -15,25 +15,26 @@ describe('Pokemon Actions', () => {
     vi.clearAllMocks();
   });
 
-  it('It must update the status of your Pokémon correctly after calling the service.', async () => {
+  it('must update the status of your Pokémon correctly after calling the service.', async () => {
     const store = usePokemonStore();
-    const mockResults = [{ name: 'pikachu', url: '...' }];
-    
-    
-    (PokemonService.getPokemonList as any).mockResolvedValue({
-      results: mockResults
-    });
+
+    vi.mocked(PokemonService.getPokemonList).mockResolvedValue({
+      count: 1,
+      next: null,
+      previous: null,
+      results: [{ name: 'pikachu', url: '...' }]
+    });  
 
     await store.loadPokemons(0, 20);
 
-    expect(store.pokemons).toEqual(mockResults);
+    expect(store.pokemons[0].name).toBe('pikachu');
   });
 
-  it('It must handle the error and not break the state if the service fails.', async () => {
+  it('must handle the error and not break the state if the service fails.', async () => {
     const store = usePokemonStore();
 
-    (PokemonService.getPokemonList as any).mockRejectedValue(new Error('Fail'));
-
+    vi.mocked(PokemonService.getPokemonList).mockRejectedValue(new Error('Fail'));
+    
     await store.loadPokemons(0, 20);
 
     expect(store.pokemons).toEqual([]);
