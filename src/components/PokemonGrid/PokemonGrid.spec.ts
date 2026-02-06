@@ -8,17 +8,17 @@ describe('PokemonGrid.vue', () => {
         {
             name: 'bulbasaur',
             image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-            url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'
+            url: 'https://pokeapi.co/api/v2/pokemon/1/'
         },
         {
             name: 'ivysaur',
             image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png',
-            url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png'
+            url: 'https://pokeapi.co/api/v2/pokemon/2/'
         },
-        { 
+        {
             name: 'venusaur',
             image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png',
-            url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png'
+            url: 'https://pokeapi.co/api/v2 /pokemon/3/'
         },
     ];
 

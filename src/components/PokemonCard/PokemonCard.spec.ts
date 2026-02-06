@@ -6,7 +6,7 @@ import PokemonCard from './PokemonCard.vue';
 describe('Pokemon.vue', () => {
     const pokemon = {
         name: 'bulbasaur',
-        url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+        url: 'https://pokeapi.co/api/v2/pokemon/1/',
         image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'
     };
 
