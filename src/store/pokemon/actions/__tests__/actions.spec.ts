@@ -24,12 +24,33 @@ describe('Pokemon Actions', () => {
       count: 1,
       next: null,
       previous: null,
-      results: [{ name: 'pikachu', url: '...' }]
-    });  
+      results: [
+        {
+          name: "bulbasaur",
+          url: "https://pokeapi.co/api/v2/pokemon/1/",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+        }
+      ]
+
+    });
+
+    vi.mocked(PokemonService.getPokemonDetails).mockResolvedValue({
+      sprites: { front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" },
+      name: 'bulbasaur',
+      id: 1,
+      stats: [],
+      types: []
+    });
+
 
     await store.loadPokemons(0, 20);
 
-    expect(store.pokemons[0].name).toBe('pikachu');
+    expect(store.pokemons[0]).toEqual({
+      name: "bulbasaur",
+      url: "https://pokeapi.co/api/v2/pokemon/1/",
+      image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+    });
+
   });
 
   it('must handle the error and not break the state if the service fails.', async () => {
@@ -44,7 +65,7 @@ describe('Pokemon Actions', () => {
 
   it('must update selectedPokemon correctly.', async () => {
     const store = usePokemonStore();
-    const MOCK_DETAILS = {name: 'bulbasaur', id: 1, stats: [], types: [], sprites: {front_default: ''}} as PokemonDetails; 
+    const MOCK_DETAILS = { name: 'bulbasaur', id: 1, stats: [], types: [], sprites: { front_default: '' } } as PokemonDetails;
 
     store.setPokemonDetails(MOCK_DETAILS);
 
@@ -53,7 +74,7 @@ describe('Pokemon Actions', () => {
 
   it('must call loadPokemonDetails and save the details.', async () => {
     const store = usePokemonStore();
-    const MOCK_DETAILS = {name: 'bulbasaur', id: 1, stats: [], types: [], sprites: {front_default: ''}} as PokemonDetails;
+    const MOCK_DETAILS = { name: 'bulbasaur', id: 1, stats: [], types: [], sprites: { front_default: '' } } as PokemonDetails;
 
     vi.mocked(PokemonService.getPokemonDetails).mockResolvedValue(MOCK_DETAILS);
 

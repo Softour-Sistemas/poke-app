@@ -6,7 +6,8 @@ import PokemonCard from './PokemonCard.vue';
 describe('Pokemon.vue', () => {
     const pokemon = {
         name: 'bulbasaur',
-        url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'
+        url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+        image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'
     };
 
     it('muestra la imagen correcta', () => {
@@ -15,7 +16,7 @@ describe('Pokemon.vue', () => {
         const img = screen.getByRole('img', { name: "bulbasaur" });
 
         expect(img).toBeInTheDocument();
-        expect(img).toHaveAttribute('src', pokemon.url);
+        expect(img).toHaveAttribute('src', pokemon.image);
         expect(img).toHaveAttribute('alt', pokemon.name);
     });
 

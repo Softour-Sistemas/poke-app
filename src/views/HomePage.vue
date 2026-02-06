@@ -1,17 +1,19 @@
 <template>
-  <h1>Hello App!</h1>
-  <p><strong>Ruta actual:</strong> {{ $route.fullPath }}</p>
-  <nav>
-    <RouterLink to="/home">Home</RouterLink>
-  </nav>
-  <nav>
-    <RouterLink to="/pokemon">pokemon</RouterLink>
-  </nav>
+  <PokemonGrid :pokemons="pokemonList.results" />
 </template>
 
 <script setup lang="ts">
+import PokemonGrid from '@/components/PokemonGrid/PokemonGrid.vue';
+import { PokemonList } from '@/models/pokemon';
 import { usePokemonStore } from '@/store';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+
+const pokemonList = ref<PokemonList>({
+  count: 0,
+  next: null,
+  previous: null,
+  results: []
+});
 
 const store = usePokemonStore()
 
@@ -22,6 +24,12 @@ const MAX_POKEMONS = 151;
 onMounted(async () => {
   for (let i = initPokemons; i < MAX_POKEMONS; i += LIMIT_POKEMONS) {
     await store.loadPokemons(LIMIT_POKEMONS, i)
+    pokemonList.value = {
+      count: store.pokemons.length,
+      next: null,
+      previous: null,
+      results: store.pokemons
+    };
   }
 });
 
