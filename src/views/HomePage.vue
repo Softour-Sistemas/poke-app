@@ -15,11 +15,15 @@ import { onMounted } from 'vue';
 
 const store = usePokemonStore()
 
-const INIT_POKEMONS = 0;
-const LIMIT_POKEMONS = 151;
+var initPokemons = 0;
+const LIMIT_POKEMONS = 25;
+const MAX_POKEMONS = 151;
 
 onMounted(async () => {
-  await store.loadPokemons(LIMIT_POKEMONS, INIT_POKEMONS);
+  for (let i = initPokemons; i < MAX_POKEMONS; i += LIMIT_POKEMONS) {
+    await store.loadPokemons(LIMIT_POKEMONS, i),
+      console.log(store.pokemons);
+  }
 });
 
 </script>
