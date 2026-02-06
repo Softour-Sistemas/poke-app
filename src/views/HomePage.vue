@@ -21,8 +21,7 @@ const MAX_POKEMONS = 151;
 
 onMounted(async () => {
   for (let i = initPokemons; i < MAX_POKEMONS; i += LIMIT_POKEMONS) {
-    await store.loadPokemons(LIMIT_POKEMONS, i),
-      console.log(store.pokemons);
+    await store.loadPokemons(LIMIT_POKEMONS, i)
   }
 });
 
